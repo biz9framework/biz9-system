@@ -1,0 +1,9 @@
+BIZ9_MOBILE_VERSION='1.0.0'
+APP_VERSION='1.4.2'
+PROJECT_ID='19'
+APP_VENDOR=''
+APP_TITLE='BiZ9-Mobile-Ecomapp-Unstable'
+APP_TITLE_ID='mobile-ecomapp'
+CONFIG_ID="io.bossappz.mobile_ecomapp";
+GIT_REPO="${BIZ9_GIT_REPO}biz9-mobile-ecomapp-unstable.git"
+GIT_BRANCH='1.0.0'

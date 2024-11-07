@@ -1,0 +1,17 @@
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { StatusBar } from 'react-native';
+import { setTopLevelNavigation } from './NavigationHelper';
+import Home from './src/Home/Home';
+
+export default function App({ navigation }) {
+  return (
+    <NavigationContainer independent ref={(ref) => setTopLevelNavigation(ref)}>
+      <StatusBar backgroundColor="#ffff" />
+      <stack.Navigator initialRouteName='Home'>
+        <stack.Screen name="Home" component={Home} options={{ headerShown: false, tabBarStyle: { display: 'none' } }}></stack.Screen>
+        </stack.Navigator>
+    </NavigationContainer>
+  );
+};
