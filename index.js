@@ -62,7 +62,7 @@ module.exports.git_main_branch_merge_checkout = function () {
         },
         function(call){
             if(confirm){
-                exec("git checkout -b main", (error, stdout, stderr) => {
+                exec("git checkout -f main", (error, stdout, stderr) => {
                     if (error) {
                         console.log(error);
                         call();
