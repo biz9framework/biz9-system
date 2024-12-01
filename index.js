@@ -1,4 +1,4 @@
-const biz9_config = require("./biz9_config");
+const biz9_config = require("./biz9_config.js");
 const package = require("./package.json");
 const async=require("async");
 const prompt = require('prompt-sync')();
