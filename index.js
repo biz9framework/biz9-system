@@ -68,9 +68,9 @@ module.exports.git_main_branch_merge_checkout = function () {
                         call();
                         return;
                     }else{
-                    console.log(stdout);
-                    console.log(stderr);
-                    call();
+                        console.log(stdout);
+                        console.log(stderr);
+                        call();
                     }
                 });
             }else{
@@ -213,11 +213,10 @@ module.exports.git_branch_update = function () {
                 if (error) {
                     console.log(error);
                     call();
-                    return;
                 }else{
-                console.log(stdout);
-                Print.show_sub_footer();
-                call();
+                    console.log(stdout);
+                    Print.show_sub_footer();
+                    call();
                 }
             });
         },
@@ -226,11 +225,12 @@ module.exports.git_branch_update = function () {
                 exec("git checkout -b "+new_branch, (error, stdout, stderr) => {
                     if (error) {
                         console.log(error);
-                        return;
+                        call();
+                    }else{
+                        console.log(stdout);
+                        console.log(stderr);
+                        call();
                     }
-                    console.log(stdout);
-                    console.log(stderr);
-                    call();
                 });
             }else{
                 call();
