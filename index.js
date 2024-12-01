@@ -77,7 +77,6 @@ module.exports.git_main_branch_merge_checkout = function () {
                 call();
             }
         },
-
         function(call){
             if(confirm){
                 exec("git config pull.rebase false", (error, stdout, stderr) => {
@@ -94,7 +93,6 @@ module.exports.git_main_branch_merge_checkout = function () {
                 call();
             }
         },
-
         function(call){
             if(confirm){
                 exec("git fetch "+biz9_config.REPO+" main", (error, stdout, stderr) => {
