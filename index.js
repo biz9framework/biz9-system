@@ -212,11 +212,13 @@ module.exports.git_branch_update = function () {
             exec("git branch --show current", (error, stdout, stderr) => {
                 if (error) {
                     console.log(error);
+                    call();
                     return;
-                }
+                }else{
                 console.log(stdout);
                 Print.show_sub_footer();
                 call();
+                }
             });
         },
         function(call){
