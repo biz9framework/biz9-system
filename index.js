@@ -36,9 +36,11 @@ class Print {
     }
 }
 /*
- * fetch
- * checkout
- *
+ * git commit new branch
+ * git checkout -b main
+ * git merge branch
+ * git commit main
+ * git push main
 */
 module.exports.git_main_branch_merge_checkout = function () {
     let commit_note='';
