@@ -63,7 +63,7 @@ module.exports.git_main_branch_merge_checkout = function () {
         function(call){
             console.log('aaaaaaaaaaaaaaaa');
             if(confirm){
-                exec("git checkout -f main", (error, stdout, stderr) => {
+                exec("git checkout main", (error, stdout, stderr) => {
                     if (error) {
                         console.log(error);
                         call();
@@ -79,41 +79,7 @@ module.exports.git_main_branch_merge_checkout = function () {
             }
         },
         function(call){
-            console.log('bbbbbbbbbbbbbbbbb');
-            if(confirm){
-                exec("git config pull.rebase false", (error, stdout, stderr) => {
-                    if (error) {
-                        console.log(error);
-                        call();
-                    }else{
-                        console.log(stdout);
-                        console.log(stderr);
-                        call();
-                    }
-                });
-            }else{
-                call();
-            }
-        },
-        function(call){
-            console.log('cccccccccccccccccc');
-            if(confirm){
-                exec("git fetch "+biz9_config.REPO+" main", (error, stdout, stderr) => {
-                    if (error) {
-                        console.log(error);
-                        call();
-                    }else{
-                        console.log(stdout);
-                        //console.log(stderr);
-                        call();
-                    }
-                });
-            }else{
-                call();
-            }
-        },
-        function(call){
-            console.log('dddddddddddddddddd');
+            console.log('bbbbbbbbbbbbbbb');
             if(confirm){
                 exec("git merge --allow-unrelated-histories "+biz9_config.BRANCH,(error, stdout, stderr) => { if (error) {
                     console.log(error);
@@ -127,25 +93,6 @@ module.exports.git_main_branch_merge_checkout = function () {
             }else{
                 call();
             }
-        },
-        function(call){
-            console.log('eeeeeeeeeeeeeeeee');
-            current_branch=biz9_config.BRANCH;
-            new_branch='main';
-            call();
-        },
-        function(call){
-            console.log('ffffffffffff');
-            fs.readFile("biz9_config.js", 'utf8', function (err,data) {
-                if (err) {
-                    return console.log(err);
-                }
-                var result = data.replace(current_branch, new_branch);
-                fs.writeFile("biz9_config.js", result, 'utf8', function (err) {
-                    if (err) return console.log(err);
-                });
-                call();
-            });
         },
     ],
         function(err, result){
@@ -287,6 +234,43 @@ module.exports.git_branch_list = function () {
             Print.show_footer();
         });
 };
+module.exports.git_branch_repo_checkout = function () {
+    let branch='';
+    async.series([
+        function(call){
+            Print.show_header('BiZ9 Framework Git Branch Repo Checkout');
+            call();
+        },
+        function(call){
+            Print.show_git_info();
+            call();
+        },
+        function(call){
+            branch = prompt('Enter Branch: ');
+            call();
+        },
+        function(call){
+            exec('git -b checkout '+biz9_config.REPO + " " + branch, (error, stdout, stderr) => {
+                if (error) {
+                    console.log(error);
+                    return;
+                }
+                console.log(stdout);
+                call();
+            });
+        },
+        function(call){
+            Print.show_sub_header('New Version');
+            console.log(new_version);
+            Print.show_sub_footer();
+            call();
+        },
+    ],
+        function(err, result){
+            Print.show_footer();
+        });
+};
+
 module.exports.git_branch_commit = function () {
     let commit_note='';
     let current_version='';
