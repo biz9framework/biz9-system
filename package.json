@@ -1,7 +1,7 @@
 {
   "name": "biz9-system",
-  "version": "1.2.66",
-  "description": "",
+  "version": "1.2.68",
+  "description": "Commands for GIT, React and more.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
