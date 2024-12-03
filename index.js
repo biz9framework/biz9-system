@@ -96,6 +96,24 @@ module.exports.git_main_branch_merge_checkout = function () {
                 call();
             }
         },
+        function(call){
+            current_branch=biz9_config.BRANCH;
+            new_branch='main';
+            call();
+        },
+        function(call){
+            fs.readFile("biz9_config.js", 'utf8', function (err,data) {
+                if (err) {
+                    return console.log(err);
+                }
+                var result = data.replace(current_branch, new_branch);
+                fs.writeFile("biz9_config.js", result, 'utf8', function (err) {
+                    if (err) return console.log(err);
+                });
+                call();
+            });
+        },
+
     ],
         function(err, result){
             Print.show_footer();
