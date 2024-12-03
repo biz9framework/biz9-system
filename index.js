@@ -78,7 +78,6 @@ module.exports.git_main_branch_merge_checkout = function () {
                 call();
             }
         },
-        /*
         function(call){
             console.log('bbbbbbbbbbbbbbbbbbb');
             if(confirm){
@@ -202,7 +201,6 @@ module.exports.git_main_branch_merge_checkout = function () {
                 call();
             });
         },
-        */
     ],
         function(err, result){
             Print.show_footer();
