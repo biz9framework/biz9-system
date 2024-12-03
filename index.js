@@ -61,7 +61,6 @@ module.exports.git_main_branch_merge_checkout = function () {
             call();
         },
         function(call){
-            console.log('aaaaaaaaaaaaaaaa');
             if(confirm){
                 exec("git branch -D main", (error, stdout, stderr) => {
                     if (error) {
@@ -79,7 +78,6 @@ module.exports.git_main_branch_merge_checkout = function () {
             }
         },
         function(call){
-            console.log('bbbbbbbbbbbbbbbbbbbbbb');
             if(confirm){
                 exec("git branch -m main", (error, stdout, stderr) => {
                     if (error) {
