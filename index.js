@@ -95,21 +95,17 @@ module.exports.git_main_branch_merge_checkout = function () {
             }
         },
         function(call){
-            if(confirm){
-                exec("git branch", (error, stdout, stderr) => {
-                    if (error) {
-                        console.log(error);
-                        call();
-                        return;
-                    }else{
-                        console.log(stdout);
-                        console.log(stderr);
-                        call();
-                    }
-                });
-            }else{
-                call();
-            }
+            Print.show_sub_header('Current Branch');
+            exec("git branch --show current", (error, stdout, stderr) => {
+                if (error) {
+                    console.log(error);
+                    call();
+                }else{
+                    console.log(stdout);
+                    Print.show_sub_footer();
+                    call();
+                }
+            });
         },
         function(call){
             current_branch=biz9_config.BRANCH;
