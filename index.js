@@ -63,7 +63,7 @@ module.exports.git_main_branch_merge_checkout = function () {
         function(call){
             console.log('aaaaaaaaaaaaaaaa');
             if(confirm){
-                exec("git checkout main", (error, stdout, stderr) => {
+                exec("git branch -D main", (error, stdout, stderr) => {
                     if (error) {
                         console.log(error);
                         call();
@@ -79,21 +79,25 @@ module.exports.git_main_branch_merge_checkout = function () {
             }
         },
         function(call){
-            console.log('bbbbbbbbbbbbbbb');
+            console.log('bbbbbbbbbbbbbbbbbbbbbb');
             if(confirm){
-                exec("git merge --allow-unrelated-histories "+biz9_config.BRANCH,(error, stdout, stderr) => { if (error) {
-                    console.log(error);
-                    call();
-                }else{
-                    console.log(stdout);
-                    console.log(stderr);
-                    call();
-                }
+                exec("git branch -m main", (error, stdout, stderr) => {
+                    if (error) {
+                        console.log(error);
+                        call();
+                        return;
+                    }else{
+                        console.log(stdout);
+                        console.log(stderr);
+                        call();
+                    }
                 });
             }else{
                 call();
             }
         },
+
+
     ],
         function(err, result){
             Print.show_footer();
