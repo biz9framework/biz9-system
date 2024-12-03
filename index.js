@@ -404,7 +404,7 @@ module.exports.git_branch_commit = function () {
             });
         },
         function(call){
-            exec("git commit -m "+commit_note, (error, stdout, stderr) => {
+            exec("git commit -m '"+commit_note+"'", (error, stdout, stderr) => {
                 if (error) {
                     console.log(error);
                     return;
