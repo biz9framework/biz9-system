@@ -355,7 +355,7 @@ module.exports.git_branch_commit = function () {
             });
         },
         function(call){
-            exec("git commit -m "+commit_note, (error, stdout, stderr) => {
+            exec("git commit -m '"+commit_note+"'", (error, stdout, stderr) => {
                 if (error) {
                     console.log(error);
                     return;
@@ -520,7 +520,7 @@ module.exports.react_build = function () {
             call();
         },
         function(call){
-            var str="cd android && gradlew assembledebug && cd ../";
+            var str="cd android && ./gradlew assembledebug && cd ../";
             exec(str,(error, stdout, stderr) => {
                 if (error) {
                     console.log(error);
@@ -539,6 +539,33 @@ module.exports.react_build = function () {
         function(err, result){
         });
 };
+module.exports.react_clean = function () {
+    async.series([
+        function(call){
+            Print.show_header('BiZ9 Framework Mobile React Clean');
+            call();
+        },
+        function(call){
+            var str="cd android && ./gradlew clean";
+            exec(str,(error, stdout, stderr) => {
+                if (error) {
+                    console.log(error);
+                    return;
+                }
+                console.log(stderr);
+                console.log(stdout);
+                call();
+            });
+        },
+        function(call){
+            Print.show_footer();
+            call();
+        },
+    ],
+        function(err, result){
+        });
+};
+
 module.exports.react_device_build_deploy = function () {
     async.series([
         function(call){
