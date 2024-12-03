@@ -1,5 +1,5 @@
-exports.VERSION="1.2.17"
+exports.VERSION="1.2.18"
 exports.TITLE='BiZ9-System'
 exports.REPO='git@github.com:biz9framework/biz9-system.git'
-exports.BRANCH='main'
+exports.BRANCH='1.2.17'
 
