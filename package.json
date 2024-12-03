@@ -1,6 +1,6 @@
 {
   "name": "biz9-system",
-  "version": "1.2.70",
+  "version": "1.2.71",
   "description": "Commands for GIT, React and more.",
   "main": "index.js",
   "scripts": {
