@@ -473,10 +473,12 @@ module.exports.npm_publish = function () {
             exec('sudo npm publish --access public', (error, stdout, stderr) => {
                 if (error) {
                     console.log(error);
-                    return;
+                    call();
+                }else{
+                    console.log(stderr);
+                    console.log(stdout);
+                    call();
                 }
-                console.log(stdout);
-                call();
             });
         },
         function(call){
@@ -487,7 +489,7 @@ module.exports.npm_publish = function () {
         function(err, result){
         });
 };
-module.exports.react_cache_reset = function () {
+module.exports.react_cache_reset_old = function () {
     async.series([
         function(call){
             Print.show_header('BiZ9 Framework Mobile React Cache Reset');
