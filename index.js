@@ -489,7 +489,7 @@ module.exports.npm_publish = function () {
         function(err, result){
         });
 };
-module.exports.react_cache_reset_old = function () {
+module.exports.react_cache_reset = function () {
     async.series([
         function(call){
             Print.show_header('BiZ9 Framework Mobile React Cache Reset');
@@ -526,11 +526,12 @@ module.exports.react_build = function () {
             exec(str,(error, stdout, stderr) => {
                 if (error) {
                     console.log(error);
-                    return;
+                    call();
+                }else{
+                    console.log(stderr);
+                    console.log(stdout);
+                    call();
                 }
-                console.log(stderr);
-                console.log(stdout);
-                call();
             });
         },
         function(call){
@@ -552,11 +553,12 @@ module.exports.react_clean = function () {
             exec(str,(error, stdout, stderr) => {
                 if (error) {
                     console.log(error);
-                    return;
+                    call();
+                }else{
+                    console.log(stderr);
+                    console.log(stdout);
+                    call();
                 }
-                console.log(stderr);
-                console.log(stdout);
-                call();
             });
         },
         function(call){
@@ -567,7 +569,6 @@ module.exports.react_clean = function () {
         function(err, result){
         });
 };
-
 module.exports.react_device_build_deploy = function () {
     async.series([
         function(call){
@@ -575,15 +576,17 @@ module.exports.react_device_build_deploy = function () {
             call();
         },
         function(call){
-            var str="react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res";
+            //var str="react-native bundle --dev false --platform android --entry-file index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res";
+            var str = "react-native run-android";
             exec(str,(error, stdout, stderr) => {
                 if (error) {
                     console.log(error);
-                    return;
+                    call();
+                }else{
+                    console.log(stderr);
+                    console.log(stdout);
+                    call();
                 }
-                console.log(stderr);
-                console.log(stdout);
-                call();
             });
         },
         function(call){
@@ -606,6 +609,7 @@ module.exports.react_device_build_deploy = function () {
         function(err, result){
         });
 };
+//bp need to test
 module.exports.react_device_log_android = function () {
     async.series([
         function(call){
@@ -617,11 +621,13 @@ module.exports.react_device_log_android = function () {
             exec(str,(error, stdout, stderr) => {
                 if (error) {
                     console.log(error);
-                    return;
+                    call();
                 }
+                else{
                 console.log(stderr);
                 console.log(stdout);
                 call();
+                }
             });
         },
         function(call){
@@ -650,10 +656,11 @@ module.exports.react_device_port_open = function () {
             exec("adb reverse tcp:"+port+" tcp:"+port, (error, stdout, stderr) => {
                 if (error) {
                     console.log(error);
-                    return;
-                }
+                    call();
+                }else{
                 console.log(stdout);
                 call();
+                }
             });
         },
         function(call){
