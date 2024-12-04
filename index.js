@@ -300,7 +300,6 @@ module.exports.git_branch_repo_checkout = function () {
             Print.show_footer();
         });
 };
-
 module.exports.git_branch_commit = function () {
     let commit_note='';
     let current_version='';
@@ -428,11 +427,21 @@ module.exports.folder_search = function () {
             Print.show_footer();
         });
 };
-module.exports.git_init = function () {
+module.exports.git_reset_init = function () {
     async.series([
         function(call){
-            Print.show_header('BiZ9 Framework Git Init');
+            Print.show_header('BiZ9 Framework Git Reset Init');
             call();
+        },
+        function(call){
+            exec('rm -rf .git', (error, stdout, stderr) => {
+                if (error) {
+                    console.log(error);
+                    return;
+                }
+                console.log(stdout);
+                call();
+            });
         },
         function(call){
             exec('git init', (error, stdout, stderr) => {
@@ -451,16 +460,12 @@ module.exports.git_init = function () {
                     return;
                 }
                 console.log(stdout);
-                call();
+                    call();
             });
-        },
-
-        function(call){
-            Print.show_footer();
-            call();
         },
     ],
         function(err, result){
+            Print.show_footer();
         });
 };
 module.exports.npm_publish = function () {
@@ -481,12 +486,9 @@ module.exports.npm_publish = function () {
                 }
             });
         },
-        function(call){
-            Print.show_footer();
-            call();
-        },
     ],
         function(err, result){
+            Print.show_footer();
         });
 };
 module.exports.react_cache_reset = function () {
@@ -500,19 +502,16 @@ module.exports.react_cache_reset = function () {
             exec(str,(error, stdout, stderr) => {
                 if (error) {
                     console.log(error);
-                    return;
-                }
+                }else{
                 console.log(stderr);
                 console.log(stdout);
                 call();
+                }
             });
-        },
-        function(call){
-            Print.show_footer();
-            call();
-        },
+        }
     ],
         function(err, result){
+        Print.show_footer();
         });
 };
 module.exports.react_build = function () {
@@ -533,13 +532,10 @@ module.exports.react_build = function () {
                     call();
                 }
             });
-        },
-        function(call){
-            Print.show_footer();
-            call();
-        },
+        }
     ],
         function(err, result){
+            Print.show_footer();
         });
 };
 module.exports.react_clean = function () {
@@ -560,13 +556,10 @@ module.exports.react_clean = function () {
                     call();
                 }
             });
-        },
-        function(call){
-            Print.show_footer();
-            call();
-        },
+        }
     ],
         function(err, result){
+            Print.show_footer();
         });
 };
 module.exports.react_device_build_deploy = function () {
@@ -601,12 +594,9 @@ module.exports.react_device_build_deploy = function () {
                 call();
             });
         },
-        function(call){
-            Print.show_footer();
-            call();
-        },
     ],
         function(err, result){
+            Print.show_footer();
         });
 };
 //bp need to test
@@ -631,11 +621,10 @@ module.exports.react_device_log_android = function () {
             });
         },
         function(call){
-            Print.show_footer();
-            call();
         },
     ],
         function(err, result){
+        Print.show_footer();
         });
 };
 module.exports.react_device_port_open = function () {
@@ -658,6 +647,7 @@ module.exports.react_device_port_open = function () {
                     console.log(error);
                     call();
                 }else{
+                console.log(stderr);
                 console.log(stdout);
                 call();
                 }
@@ -670,5 +660,6 @@ module.exports.react_device_port_open = function () {
         },
     ],
         function(err, result){
+            Print.show_footer();
         });
 };
