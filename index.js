@@ -1,9 +1,17 @@
-const biz9_config = require("./biz9_config.js");
-const package = require("./package.json");
+const fs = require("fs");
 const async=require("async");
 const prompt = require('prompt-sync')();
-const fs = require("fs");
 const { exec } = require('child_process');
+/* prod
+const biz9_config_file="../../biz9_config.js";
+const package_file="../../package.json";
+const biz9_config = require(biz9_config_file);
+const package = require(package_file);
+*/
+const biz9_config_file="./biz9_config.js";
+const package_file="./package.json";
+const biz9_config = require(biz9_config_file);
+const package = require(package_file);
 class Print {
     static show_header(title) {
         console.log('############');
@@ -113,12 +121,12 @@ module.exports.git_main_branch_merge_checkout = function () {
             call();
         },
         function(call){
-            fs.readFile("biz9_config.js", 'utf8', function (err,data) {
+            fs.readFile(biz9_config_file, 'utf8', function (err,data) {
                 if (err) {
                     return console.log(err);
                 }
                 var result = data.replace(current_branch, new_branch);
-                fs.writeFile("biz9_config.js", result, 'utf8', function (err) {
+                fs.writeFile(biz9_config_file, result, 'utf8', function (err) {
                     if (err) return console.log(err);
                 });
                 call();
@@ -219,19 +227,16 @@ module.exports.git_branch_update = function () {
             }
         },
         function(call){
-            fs.readFile("biz9_config.js", 'utf8', function (err,data) {
+            fs.readFile(biz9_config_file, 'utf8', function (err,data) {
                 if (err) {
                     return console.log(err);
                 }
                 var result = data.replace(current_branch, new_branch);
-                fs.writeFile("biz9_config.js", result, 'utf8', function (err) {
+                fs.writeFile(biz9_config_file, result, 'utf8', function (err) {
                     if (err) return console.log(err);
                 });
                 call();
             });
-        },
-        function(call){
-            call();
         },
     ],
         function(err, result){
@@ -328,12 +333,12 @@ module.exports.git_branch_commit = function () {
             });
         },
         function(call){
-            fs.readFile("biz9_config.js", 'utf8', function (err,data) {
+            fs.readFile(biz9_config_file, 'utf8', function (err,data) {
                 if (err) {
                     return console.log(err);
                 }
                 var result = data.replace(current_version, new_version);
-                fs.writeFile("biz9_config.js", result, 'utf8', function (err) {
+                fs.writeFile(biz9_config_file, result, 'utf8', function (err) {
                     if (err) return console.log(err);
                 });
                 call();
@@ -460,7 +465,7 @@ module.exports.git_reset_init = function () {
                     return;
                 }
                 console.log(stdout);
-                    call();
+                call();
             });
         },
     ],
@@ -503,15 +508,15 @@ module.exports.react_cache_reset = function () {
                 if (error) {
                     console.log(error);
                 }else{
-                console.log(stderr);
-                console.log(stdout);
-                call();
+                    console.log(stderr);
+                    console.log(stdout);
+                    call();
                 }
             });
         }
     ],
         function(err, result){
-        Print.show_footer();
+            Print.show_footer();
         });
 };
 module.exports.react_build = function () {
@@ -614,9 +619,9 @@ module.exports.react_device_log_android = function () {
                     call();
                 }
                 else{
-                console.log(stderr);
-                console.log(stdout);
-                call();
+                    console.log(stderr);
+                    console.log(stdout);
+                    call();
                 }
             });
         },
@@ -624,7 +629,7 @@ module.exports.react_device_log_android = function () {
         },
     ],
         function(err, result){
-        Print.show_footer();
+            Print.show_footer();
         });
 };
 module.exports.react_device_port_open = function () {
@@ -647,9 +652,9 @@ module.exports.react_device_port_open = function () {
                     console.log(error);
                     call();
                 }else{
-                console.log(stderr);
-                console.log(stdout);
-                call();
+                    console.log(stderr);
+                    console.log(stdout);
+                    call();
                 }
             });
         },
