@@ -3,8 +3,11 @@ const async=require("async");
 const prompt = require('prompt-sync')();
 const { exec } = require('child_process');
 
-const biz9_config_file="../../biz9_config.js";
-const package_file="../../package.json";
+//const biz9_config_file="../../"+__dirname+"/biz9_config.js";
+//const package_file="../../"+__dirname+"/package.json";
+const biz9_config_file=__dirname+"/../../"+"biz9_config.js";
+const package_file=__dirname+"/../../"+"package.json";
+
 const biz9_config = require(biz9_config_file);
 const package = require(package_file);
 
