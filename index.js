@@ -2,16 +2,12 @@ const fs = require("fs");
 const async=require("async");
 const prompt = require('prompt-sync')();
 const { exec } = require('child_process');
-/* prod
-const biz9_config_file="../../biz9_config.js";
-const package_file="../../package.json";
+
+const biz9_config_file="../biz9_config.js";
+const package_file="../package.json";
 const biz9_config = require(biz9_config_file);
 const package = require(package_file);
-*/
-const biz9_config_file="./biz9_config.js";
-const package_file="./package.json";
-const biz9_config = require(biz9_config_file);
-const package = require(package_file);
+
 class Print {
     static show_header(title) {
         console.log('############');
